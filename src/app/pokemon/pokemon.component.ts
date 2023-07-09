@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {PokemonService} from "../services/pokemon.service";
+import {Component, Inject, Injectable, OnInit} from '@angular/core';
+import {PokemonService} from "../services/pokemons.service";
+
 
 @Component({
   selector: 'app-pokemon',
   templateUrl: './pokemon.component.html',
   styleUrls: ['./pokemon.component.scss']
 })
+
+@Inject
 export class PokemonComponent implements OnInit {
   pokemon: any;
 
@@ -14,7 +17,7 @@ export class PokemonComponent implements OnInit {
   ngOnInit() {}
 
   getThemAll() {
-    this.pokemonService.getPokemon().subscribe(data => {
+    this.pokemonService.getPokemon().subscribe((data: any) => {
       this.pokemon = data;
       console.log("Pokemon ", data)
     });
